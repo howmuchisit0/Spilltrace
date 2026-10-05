@@ -36,6 +36,7 @@ data/ais_samples/*
 data/sar_images/*
 data/synthetic_ais/*
 outputs/*
+!outputs/*.json
 !data/ais_samples/.gitkeep
 !data/sar_images/.gitkeep
 !data/synthetic_ais/.gitkeep
@@ -55,6 +56,7 @@ data/sar_images/*
 data/synthetic_ais/*
 data/real_sar/*
 outputs/*
+!outputs/*.json
 !data/ais_samples/.gitkeep
 !data/sar_images/.gitkeep
 !data/synthetic_ais/.gitkeep

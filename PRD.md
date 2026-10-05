@@ -1,6 +1,4 @@
-# OceanTrace — 1-Page PRD
-
-**SIH 2026 · Problem Statement #26143 (NTRO) · Team Adamya**
+# SpillTrace — 1-Page PRD
 
 ---
 
@@ -15,13 +13,13 @@ Meanwhile, oil keeps spreading, evidence degrades, and coastal ecosystems and fi
 
 ## 2. Who This Is For
 
-- **Coast guard / maritime enforcement teams** (like NTRO) who need to act fast once a spill is spotted
+- **Coast guard / maritime enforcement teams** who need to act fast once a spill is spotted
 - **Environmental response agencies** who need to know where the spill is heading next, not just where it is now
 - **Investigators** who currently reconstruct vessel movement manually from AIS records after the fact
 
 ## 3. Our Solution
 
-OceanTrace is an automated pipeline that:
+SpillTrace is an automated pipeline that:
 
 1. **Detects** the oil spill directly from satellite radar imagery, using a trained AI model
 2. **Reconstructs the drift** — simulates ocean currents backward to estimate where and when it started, and forward to predict where it's heading
@@ -30,7 +28,7 @@ OceanTrace is an automated pipeline that:
 
 ## 4. Real User Story
 
-*A satellite passes over the Arabian Sea and captures a radar image. Within minutes, OceanTrace flags a dark patch as a likely oil spill, traces its drift backward to estimate it started 6 hours earlier near a specific point, and cross-references vessel traffic — surfacing one cargo ship that was in exactly the right place at exactly the right time. A response team that would normally spend hours manually piecing this together instead has a ranked starting point in minutes.*
+*A satellite passes over the Arabian Sea and captures a radar image. Within minutes, SpillTrace flags a dark patch as a likely oil spill, traces its drift backward to estimate it started 6 hours earlier near a specific point, and cross-references vessel traffic — surfacing one cargo ship that was in exactly the right place at exactly the right time. A response team that would normally spend hours manually piecing this together instead has a ranked starting point in minutes.*
 
 ## 5. Existing Solutions — and the Gap
 

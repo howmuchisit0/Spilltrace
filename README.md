@@ -1,4 +1,4 @@
-# OceanTrace
+# SpillTrace
 **Automated Marine Oil Spill Detection & Vessel Attribution**
 
 Detect oil spills from satellite imagery, hindcast their origin, and identify responsible vessels through AIS cross-reference.
@@ -9,7 +9,7 @@ Detect oil spills from satellite imagery, hindcast their origin, and identify re
 Marine oil spills are environmental disasters. Current response is reactive—spills are spotted days after they occur. By then, the source has dispersed and responsible parties are hard to trace. Environmental agencies need rapid detection, drift forecasting, and vessel attribution to enforce accountability.
 
 ## Approach
-OceanTrace automates the entire pipeline end-to-end:
+SpillTrace automates the entire pipeline end-to-end:
 
 1. **Detects** oil spills from Sentinel-1 SAR satellite imagery using a trained deep learning model (Dice: 0.826)
 2. **Hindcasts** drift using ocean current simulation to pinpoint spill origin
@@ -41,8 +41,8 @@ All three layers work on either synthetic demo data or real Sentinel-1 satellite
 ## Quick Start
 ```bash
 # Backend setup
-git clone https://github.com/CheerathAniketh/OceanTrace
-cd OceanTrace
+git clone https://github.com/howmuchisit0/Spilltrace
+cd Spilltrace
 python3.12 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 
@@ -226,7 +226,7 @@ curl http://localhost:8000/api/spill-result?mode=real
 
 ## Project Structure
 ```
-OceanTrace/
+SpillTrace/
 ├── detection/            # PyTorch U-Net model + inference
 │   ├── detect_spill.py
 │   ├── run_real_inference.py
@@ -271,8 +271,7 @@ See [docs/contract.md](./docs/contract.md) for the JSON contract between the pip
 ---
 
 ## Links
-- **GitHub:** github.com/CheerathAniketh/OceanTrace
-- **LinkedIn:** linkedin.com/in/cheerathaniketh
+- **GitHub:** [github.com/howmuchisit0/Spilltrace](https://github.com/howmuchisit0/Spilltrace)
 
 ---
 
@@ -280,7 +279,3 @@ See [docs/contract.md](./docs/contract.md) for the JSON contract between the pip
 - Fay, J. A. (1971). Physical processes in the spread of oil on ocean surface.
 - NASA ASF — Sentinel-1 data archive
 - Kaggle SAR image-mask dataset
-
----
-
-Made for Smart India Hackathon 2026 (NTRO problem statement #26143) by Team Adamya.

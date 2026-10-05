@@ -19,9 +19,9 @@ OUTPUTS_DIR = Path(__file__).resolve().parent.parent / "outputs"
 SYNTHETIC_RESULT_PATH = OUTPUTS_DIR / "pipeline_result.json"
 REAL_RESULT_PATH = OUTPUTS_DIR / "pipeline_result_real.json"
 
-# Set OCEANTRACE_MODE=real as an env var before starting uvicorn to serve
+# Set SPILLTRACE_MODE=real as an env var before starting uvicorn to serve
 # the real Sentinel-1 result instead of the synthetic demo result.
-DEFAULT_MODE = os.environ.get("OCEANTRACE_MODE", "synthetic")
+DEFAULT_MODE = os.environ.get("SPILLTRACE_MODE") or os.environ.get("OCEANTRACE_MODE", "synthetic")
 
 
 @app.get("/api/spill-result")
