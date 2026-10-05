@@ -4,9 +4,10 @@ import MapView from './components/MapView';
 import VesselRanking from './components/VesselRanking';
 import SpillAnalytics from './components/SpillAnalytics';
 import DossierPanel from './components/DossierPanel';
+import fallbackData from './data/fallbackData.json';
 import './App.css';
 
-const API_URL = 'http://localhost:8000/api/spill-result?mode=real';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/spill-result?mode=real';
 
 function App() {
   const [data, setData] = useState(null);
@@ -14,9 +15,15 @@ function App() {
 
   useEffect(() => {
     fetch(API_URL)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
       .then((json) => setData(json))
-      .catch((err) => console.error('Failed to fetch spill data:', err));
+      .catch((err) => {
+        console.warn('Backend API unavailable, using embedded pipeline data:', err);
+        setData(fallbackData);
+      });
   }, []);
 
   if (!data) return <div className="status-message">Loading…</div>;
