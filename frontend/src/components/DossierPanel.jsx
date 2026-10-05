@@ -19,28 +19,29 @@ export default function DossierPanel({ vessel, onClose }) {
 
   return (
     <motion.div 
-      className="dossier-panel glass-panel"
+      className="dossier-panel"
       layoutId={`vessel-${vessel.vessel_id}`}
-      initial={{ borderRadius: 12 }}
-      animate={{ borderRadius: 20 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.25 }}
     >
       <div className="dossier-header">
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <Navigation size={24} className="icon-accent-blue" />
+          <Navigation size={20} className="icon-muted" />
           <div>
-            <h2 style={{ margin: 0, fontSize: '1.4rem' }}>{vessel.name.toUpperCase()}</h2>
-            <div className="vessel-imo" style={{ opacity: 0.7 }}>Vessel ID: {vessel.vessel_id}</div>
+            <h2 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 600 }}>{vessel.name}</h2>
+            <div className="vessel-imo" style={{ marginTop: '2px' }}>{vessel.vessel_id}</div>
           </div>
         </div>
-        <button className="close-btn" onClick={onClose}><X size={24} /></button>
+        <button className="close-btn" onClick={onClose}><X size={18} /></button>
       </div>
 
       <div className="dossier-grid">
         <div className="dossier-box full-width">
-          <h3 className="box-title">SUSPICION BREAKDOWN</h3>
+          <h3 className="box-title">Suspicion breakdown</h3>
           <div className="metric-grid">
             <div className="metric-box">
-              <div className="metric-title"><span>Overall Suspicion</span></div>
+              <div className="metric-title"><span>Overall</span></div>
               <div className="metric-value" style={{ color: tier.color }}>
                 {overallScore}<span className="metric-unit">%</span>
               </div>
@@ -52,13 +53,13 @@ export default function DossierPanel({ vessel, onClose }) {
               </div>
             </div>
             <div className="metric-box">
-              <div className="metric-title"><span>Trajectory Match</span></div>
+              <div className="metric-title"><span>Trajectory</span></div>
               <div className="metric-value text-small">
                 {Math.round(vessel.trajectory_score * 100)}%
               </div>
             </div>
             <div className="metric-box">
-              <div className="metric-title"><span>Anomaly Score</span></div>
+              <div className="metric-title"><span>Anomaly</span></div>
               <div className="metric-value text-small">
                 {Math.round(vessel.anomaly_score * 100)}%
               </div>
@@ -67,7 +68,7 @@ export default function DossierPanel({ vessel, onClose }) {
         </div>
 
         <div className="dossier-box full-width">
-          <h3 className="box-title">TRACK HISTORY</h3>
+          <h3 className="box-title">Track history</h3>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             {vessel.track.map((point, i) => {
               const [lat, lon, timestamp] = point;
@@ -78,11 +79,11 @@ export default function DossierPanel({ vessel, onClose }) {
                   className="profile-row"
                   style={{ borderBottom: isLast ? 'none' : undefined }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <MapPin size={14} className="icon-muted" />
-                    <span>{lat.toFixed(4)}, {lon.toFixed(4)}</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <MapPin size={12} className="icon-muted" />
+                    <span style={{ fontVariantNumeric: 'tabular-nums' }}>{lat.toFixed(4)}, {lon.toFixed(4)}</span>
                   </div>
-                  <span style={{ color: 'var(--text-secondary)' }}>
+                  <span style={{ color: 'var(--text-tertiary)', fontSize: '0.8rem' }}>
                     {formatTimestamp(timestamp)}
                   </span>
                 </div>

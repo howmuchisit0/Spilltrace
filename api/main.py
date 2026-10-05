@@ -5,7 +5,7 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="OceanTrace API")
+app = FastAPI(title="SpillTrace API")
 
 # Allow Vite dev server on localhost AND on LAN (e.g. demo laptop by IP)
 app.add_middleware(

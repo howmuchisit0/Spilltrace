@@ -6,7 +6,6 @@ export default function SpillAnalytics({ data }) {
 
   const { area_km2, detected_at, estimated_age } = data.spill;
 
-  // Format detection time
   const detectionDate = new Date(detected_at);
   const formattedDate = detectionDate.toLocaleString('en-US', { 
     month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short' 
@@ -15,25 +14,25 @@ export default function SpillAnalytics({ data }) {
   return (
     <div className="analytics-widget glass-panel">
       <div className="widget-header">
-        <Droplet className="icon-accent-red" size={20} />
-        <h2>SPILL INTELLIGENCE</h2>
+        <Droplet className="icon-accent-red" size={16} />
+        <h2>Spill overview</h2>
       </div>
 
       <div className="metric-grid">
         <div className="metric-box">
           <div className="metric-title">
-            <Map size={14} className="icon-muted" />
-            <span>Estimated Area</span>
+            <Map size={12} className="icon-muted" />
+            <span>Area</span>
           </div>
-          <div className="metric-value highlight-red">
-            {area_km2.toFixed(2)} <span className="metric-unit">km²</span>
+          <div className="metric-value">
+            {area_km2.toFixed(1)} <span className="metric-unit">km²</span>
           </div>
         </div>
 
         <div className="metric-box">
           <div className="metric-title">
-            <Clock size={14} className="icon-muted" />
-            <span>Detection Time</span>
+            <Clock size={12} className="icon-muted" />
+            <span>Detected</span>
           </div>
           <div className="metric-value text-small">
             {formattedDate}
@@ -43,16 +42,16 @@ export default function SpillAnalytics({ data }) {
         {estimated_age && (
           <div className="metric-box full-width">
             <div className="metric-title">
-              <AlertTriangle size={14} className={estimated_age.regime_valid ? 'icon-accent-orange' : 'icon-muted'} />
-              <span>Estimated Age (Fay Model)</span>
+              <AlertTriangle size={12} className={estimated_age.regime_valid ? 'icon-accent-orange' : 'icon-muted'} />
+              <span>Estimated age</span>
             </div>
-            <div className="metric-value highlight-orange">
+            <div className="metric-value">
               {estimated_age.estimated_age_hours.toFixed(1)} <span className="metric-unit">hours</span>
             </div>
             {!estimated_age.regime_valid && (
-              <div className="caveat-box">
-                <AlertCircle size={12} />
-                <span>Outside valid regime. Reliability low.</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginTop: '6px', fontSize: '0.7rem', color: 'var(--text-tertiary)' }}>
+                <AlertCircle size={11} />
+                <span>Outside valid regime</span>
               </div>
             )}
           </div>

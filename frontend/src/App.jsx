@@ -7,7 +7,6 @@ import DossierPanel from './components/DossierPanel';
 import './App.css';
 
 const API_URL = 'http://localhost:8000/api/spill-result?mode=real';
-const APP_NAME = 'OceanTrace';
 
 function App() {
   const [data, setData] = useState(null);
@@ -20,40 +19,31 @@ function App() {
       .catch((err) => console.error('Failed to fetch spill data:', err));
   }, []);
 
-  if (!data) return <div className="status-message">Loading spill data...</div>;
+  if (!data) return <div className="status-message">Loading…</div>;
 
   const selectedVessel = data.vessels.find(v => v.vessel_id === selectedVesselId);
 
   return (
     <div className="dashboard-container">
-      {/* Grouped top-left status row — keeps the right panel clear */}
       <div className="status-bar">
-        <div className="live-badge">{APP_NAME}</div>
+        <div className="live-badge">SpillTrace</div>
         <div className="demo-mode-badge">
-          DEMO MODE · Synthetic AIS · Unconfirmed Detection
+          Demo · Synthetic AIS
         </div>
       </div>
 
-      {/* Map is background */}
-      <motion.div 
-        className="map-section"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
+      <div className="map-section">
         <MapView data={data} selectedVesselId={selectedVesselId} />
-      </motion.div>
+      </div>
 
-      {/* Analytics Panel */}
       <motion.div
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 0.2, type: 'spring', stiffness: 100 }}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.1 }}
       >
         <SpillAnalytics data={data} />
       </motion.div>
       
-      {/* The unified AnimatePresence for morphing right panel */}
       <AnimatePresence mode="wait">
         {selectedVesselId ? (
           <DossierPanel 
@@ -64,17 +54,20 @@ function App() {
         ) : (
           <motion.div 
             key="ranking"
-            className="panel-section glass-panel"
-            initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: 100, opacity: 0 }}
-            transition={{ type: 'spring', stiffness: 100, damping: 15 }}
-            style={{ position: 'absolute', top: 20, right: 20, bottom: 20, width: 400, overflowY: 'auto' }}
+            className="panel-section"
+            initial={{ opacity: 0, x: 12 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 12 }}
+            transition={{ duration: 0.3 }}
+            style={{ position: 'absolute', top: 16, right: 16, bottom: 16, width: 380, overflowY: 'auto' }}
           >
-            <div style={{ padding: '24px 24px 10px 24px', borderBottom: '1px solid var(--panel-border)' }}>
-              <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '0.5px' }}>
-                {APP_NAME}
+            <div style={{ padding: '18px 20px 14px', borderBottom: '1px solid var(--border)' }}>
+              <h1 style={{ margin: 0, fontSize: '0.95rem', fontWeight: 600, color: 'var(--text)', letterSpacing: '0.01em' }}>
+                SpillTrace
               </h1>
+              <p style={{ margin: '4px 0 0', fontSize: '0.72rem', color: 'var(--text-tertiary)', fontWeight: 400 }}>
+                Vessel attribution ranking
+              </p>
             </div>
             <VesselRanking
               vessels={data.vessels}

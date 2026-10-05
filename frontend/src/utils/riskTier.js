@@ -1,8 +1,6 @@
-// Single source of truth for risk color/label, shared across
-// VesselRanking and DossierPanel so a vessel's color never
-// disagrees with itself depending on which view you're looking at.
+// Risk tier — muted, professional palette
 export function riskTier(scorePct) {
-  if (scorePct > 70) return { label: 'high-risk', color: 'var(--accent-red)' };
-  if (scorePct > 40) return { label: 'med-risk', color: 'var(--accent-orange, #f59e0b)' };
-  return { label: 'low-risk', color: 'var(--accent-green, #22c55e)' };
+  if (scorePct > 70) return { label: 'high-risk', color: '#c25d5d' };
+  if (scorePct > 40) return { label: 'med-risk', color: '#b8943a' };
+  return { label: 'low-risk', color: '#5a9e7c' };
 }
